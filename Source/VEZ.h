@@ -164,6 +164,7 @@ typedef struct VezShaderModuleCreateInfo
     const uint32_t* pCode;
     const char* pGLSLSource;
     const char* pEntryPoint;
+    const char* pPreamble;
 } VezShaderModuleCreateInfo;
 
 typedef struct VezPipelineShaderStageCreateInfo

@@ -46,11 +46,22 @@ namespace vez
                 return VK_ERROR_INITIALIZATION_FAILED;
             }
 
+            // Ensure preamble is not null.
+            const char* preamble = pCreateInfo->pPreamble;
+            if (!preamble) {
+                preamble = "";
+            }
+
             // Compile the GLSL source.
-            if (!CompileGLSL2SPIRV(pCreateInfo->stage, pCreateInfo->pGLSLSource, pCreateInfo->pEntryPoint, shaderModule->m_spirv, shaderModule->m_infoLog))
-            {
-                // Store ShaderModule object address so shader log can be retrived.  Set the native Vulkan object handle to the same memory address.
-                shaderModule->m_handle = reinterpret_cast<VkShaderModule>(shaderModule);
+            if (!CompileGLSL2SPIRV(pCreateInfo->stage, pCreateInfo->pGLSLSource,
+                                   pCreateInfo->pEntryPoint, preamble,
+                                   shaderModule->m_spirv,
+                                   shaderModule->m_infoLog)) {
+                // Store ShaderModule object address so shader log can be
+                // retrived.  Set the native Vulkan object handle to the same
+                // memory address.
+                shaderModule->m_handle =
+                    reinterpret_cast<VkShaderModule>(shaderModule);
                 *ppShaderModule = shaderModule;
                 return VK_ERROR_INITIALIZATION_FAILED;
             }
