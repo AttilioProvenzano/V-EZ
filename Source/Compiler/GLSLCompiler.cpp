@@ -134,7 +134,11 @@ EShLanguage MapShaderStage(VkShaderStageFlagBits stage)
 
 namespace vez
 {
-    bool CompileGLSL2SPIRV(VkShaderStageFlagBits stage, const std::string& source, const std::string& entryPoint, std::vector<uint32_t>& spirv, std::string& infoLog)
+bool CompileGLSL2SPIRV(VkShaderStageFlagBits stage, const std::string& source,
+                       const std::string& entryPoint,
+                       const std::string& preamble,
+                       std::vector<uint32_t>& spirv,
+                       std::string& infoLog)
     {
         // Get default built in resource limits.
         auto resourceLimits = glslang::DefaultTBuiltInResource;
@@ -157,6 +161,7 @@ namespace vez
         shader.setStringsWithLengthsAndNames(&shaderText, nullptr, fileNameList, 1);
         shader.setEntryPoint(entryPoint.c_str());
         shader.setSourceEntryPoint(entryPoint.c_str());
+        shader.setPreamble(preamble.c_str());
         shader.setShiftSamplerBinding(0);
         shader.setShiftTextureBinding(0);
         shader.setShiftImageBinding(0);
