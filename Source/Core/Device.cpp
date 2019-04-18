@@ -556,10 +556,10 @@ namespace vez
         // Example: When usage is SAMPLED_BIT, that takes precendence over the image being used as a color attachment or for transfer operations.
         auto usage = pCreateInfo->usage;
         VkImageLayout defaultLayout = imageCreateInfo.initialLayout;
-        if (usage & VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT) defaultLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+        if (usage & VK_IMAGE_USAGE_SAMPLED_BIT) defaultLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+        else if (usage & VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT) defaultLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
         else if (usage & VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT) defaultLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
         else if (usage & VK_IMAGE_USAGE_STORAGE_BIT) defaultLayout = VK_IMAGE_LAYOUT_GENERAL;
-        else if (usage & VK_IMAGE_USAGE_SAMPLED_BIT) defaultLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
         else if (usage & VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT) defaultLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
         else if (usage & VK_IMAGE_USAGE_TRANSFER_DST_BIT) defaultLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
         else if (usage & VK_IMAGE_USAGE_TRANSFER_SRC_BIT) defaultLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
