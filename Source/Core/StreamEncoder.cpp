@@ -943,8 +943,8 @@ namespace vez
                                     {
                                     case VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER:
                                     case VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE:
-                                        //imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-                                        //m_pipelineBarriers.ImageAccess(m_stream.TellP(), bindingInfo.pImageView->GetImage(), &bindingInfo.pImageView->GetSubresourceRange(), imageInfo.imageLayout, accessMask, stageMask);
+                                        imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+                                        m_pipelineBarriers.ImageAccess(m_stream.TellP(), bindingInfo.pImageView->GetImage(), &bindingInfo.pImageView->GetSubresourceRange(), imageInfo.imageLayout, accessMask, stageMask);
                                         break;
 
                                     case VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT:
