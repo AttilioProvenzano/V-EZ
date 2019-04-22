@@ -284,7 +284,7 @@ namespace vez
                 // Iterate over list of previous accesses.
                 auto& accessList = entry->second;
                 auto iter = accessList.begin();
-                while (iter != accessList.end())
+                while (iter != accessList.end() && !accessList.empty())
                 {
                     // If no bits are currently set in mip level access, quit iterating.
                     if (!mipLevelAccessMask)
