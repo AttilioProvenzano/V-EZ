@@ -637,11 +637,8 @@ namespace vez
 
     void StreamEncoder::CmdBlitImage(Image* pSrcImage, Image* pDstImage, uint32_t regionCount, const VezImageBlit* pRegions, VkFilter filter)
     {
-        // If source and destination images are the same, layouts must be equal.
         VkImageLayout srcLayout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
         VkImageLayout dstLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
-        if (pSrcImage == pDstImage)
-            srcLayout = dstLayout = VK_IMAGE_LAYOUT_GENERAL;
         
         // Add image accesses to PipelineBarriers.
         for (auto i = 0U; i < regionCount; ++i)
