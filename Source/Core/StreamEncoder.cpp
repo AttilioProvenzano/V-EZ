@@ -332,6 +332,9 @@ namespace vez
         // Reset bound framebuffer in GraphicsState.
         m_graphicsState.SetFramebuffer(nullptr);
 
+        // Reset bound pipeline in GraphicsState.
+        m_graphicsState.SetPipeline(nullptr);
+
         // Encode the command to the memory stream.
         m_stream << END_RENDER_PASS;
     }
